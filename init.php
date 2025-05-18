@@ -60,6 +60,28 @@ if (empty($db->select('users'))) {
     }
 }
 
+// Insert posts from API only if no posts exist
+if (empty($db->select('posts'))) {
+    $postsData = fetchDataUsingCurl(API_URL . '/posts');
+    $posts = json_decode($postsData, true);
+    
+    // Get valid user IDs from the users table
+    $userRows = $db->select('users', ['id']);
+    $validUserIds = array_column($userRows, 'id');
+    
+    foreach ($posts as $post) {
+        if (!in_array($post['userId'], $validUserIds)) {
+            continue;
+        }
+        $db->insert('posts', [
+            'user_id' => $post['userId'],
+            'title'   => $post['title'],
+            'body'    => $post['body'],
+            'active'  => 1
+        ]);
+    }
+}
+
 // Save avatar image using cURL
 $avatarPath = __DIR__ . '/data/' . AVATAR_FILE_NAME;
 if (!file_exists($avatarPath)) {
