@@ -1,0 +1,20 @@
+.advanced-section {
+    margin-bottom: 40px;
+    background: #fff;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+.advanced-section h2 {
+    margin-top: 0;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+table tr th,
+table tr td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}

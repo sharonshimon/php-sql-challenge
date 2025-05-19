@@ -96,6 +96,12 @@ class Database
     return $stmt->execute();
     }
 
+    public function rawQuery(string $query, array $params = []): PDOStatement {
+    $stmt = $this->conn->prepare($query);
+    $stmt->execute($params);
+    return $stmt;
+}
+
 }
 
 

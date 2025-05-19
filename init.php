@@ -20,6 +20,7 @@ $db->createTable('users', [
     ['name' => 'id', 'definition' => 'INT PRIMARY KEY AUTO_INCREMENT'],
     ['name' => 'name', 'definition' => 'VARCHAR(50) NOT NULL'],
     ['name' => 'email', 'definition' => 'VARCHAR(100) NOT NULL UNIQUE'],
+    ['name' => 'birth_date', 'definition' => 'DATE DEFAULT NULL'],  // new column
     ['name' => 'active', 'definition' => 'BOOLEAN DEFAULT 1']
 ]);
 
@@ -93,4 +94,4 @@ if (!file_exists($avatarPath)) {
     file_put_contents($avatarPath, fetchDataUsingCurl(AVATAR_IMAGE_URL));
 }
 
-echo "Setup complete.";
+
